@@ -1,0 +1,89 @@
+@import "../../style.css";
+
+.preview-container{
+    width: 160px;
+    padding: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    align-items: center;
+
+    border-left: 1px solid var(--primary);
+}
+
+h1{
+    font-size: 10px;
+    line-height: 1;
+}
+
+h1.title-secondary{
+    color: var(--secondary);
+}
+
+p{
+    font-size: 6px;
+}
+.btn-container{
+    display: flex;
+
+    gap: 2px;
+}
+
+button{
+    border: none;
+    padding: 4px;
+
+    border-radius: 4px;
+}
+
+button.preview{
+    font-size: 4px;
+    padding: 4px;
+
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+button.btn-primary{
+    background-color: var(--primary);
+}
+
+button.btn-secondary{
+    background-color: var(--secondary);
+}
+
+.card-container{
+    display: flex;
+   justify-content: space-between;
+
+   min-width: 320px;
+   border: solid 1px var(--primary);
+   padding: 1rem;
+
+   gap: 1rem;
+
+   border-radius: 8px;
+
+   box-shadow:  7px 7px 14px #bebebe,
+                -7px -7px 14px #ffffff;
+}
+
+.aside-card{
+    display: flex;
+    flex-direction: column;
+
+    align-items: start;
+    justify-content: space-between;
+}
+
+.btn-warning{
+    background-color: var(--warning);
+}
+
+.btn-danger{
+    background-color: var(--danger);
+}
+
