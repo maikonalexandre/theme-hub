@@ -1,10 +1,9 @@
 import pencil from "../../svgs/pencil.svg"
 import trash from "../../svgs/trash.svg"
 
-
 export const template = document.createElement("template");
 template.innerHTML = /*html*/`
-<link rel="stylesheet" href="/components/min-preview/styles.css"/>
+<link rel="stylesheet" href="/components/theme-card/styles.css"/>
 <div class="card-container">
     <div class="aside-card">
         <span class="card-title">Theme title</span> 

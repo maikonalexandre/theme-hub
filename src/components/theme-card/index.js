@@ -1,7 +1,7 @@
 import { template } from "./template";
 import { resetColorsToDefault } from "../../utils/index.js"
 
-class MinPreview extends HTMLElement {
+class ThemeCard extends HTMLElement {
     constructor() {
         super();
         this.build()
@@ -41,7 +41,7 @@ class MinPreview extends HTMLElement {
         const deleteButton = this.shadowRoot.querySelector(".btn-danger")
 
         const editButton = this.shadowRoot.querySelector(".btn-warning")
-        editButton.setAttribute("href", `/about/${this.getAttribute("id")}`)
+        editButton.setAttribute("href", `/theme/${this.getAttribute("id")}`)
 
         checkboxInput.addEventListener(("change"), (event) => {
             if (!event.target.checked) {
@@ -68,4 +68,4 @@ class MinPreview extends HTMLElement {
     }
 }
 
-customElements.define("min-preview", MinPreview);
+customElements.define("theme-card", ThemeCard);
