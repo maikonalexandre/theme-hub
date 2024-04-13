@@ -1,17 +1,26 @@
-export const template = document.createElement("div");
+import pencil from "../svgs/pencil.svg"
+import trash from "../svgs/trash.svg"
+
+
+export const template = document.createElement("template");
 template.innerHTML = /*html*/`
 <link rel="stylesheet" href="/components/min-preview/styles.css"/>
 <div class="card-container">
     <div class="aside-card">
-        <span class="card-header">Theme title</span> 
-        <div class="">
-            <button class="">1</button>
-            <button class="btn-warning">
-                <i class="ph-bold ph-pencil-simple-line"></i>   
+        <span class="card-title">Theme title</span> 
+        <div class="aside-btn-container">
+            <label for="input-checkmark" class="input-container">
+                <input id="input-checkmark" type="checkbox">
+                <div class="input-checkmark"></div>
+            </label>
+            <a class="btn-warning">
+                <img src="${pencil}" alt="pencil svg"> 
+            </a>
+            <button class="btn-danger">
+                <img src="${trash}" alt="pencil svg"> 
             </button>
-            <button class="btn-danger">3</button>
-        </div>
-    </div>
+        </div >
+    </div >
 
     <div class="preview-container">
         <div>
@@ -20,13 +29,13 @@ template.innerHTML = /*html*/`
         </div>
 
         <div>
-            <p>The fastest method for working together on staging and temporary environments</p> 
+            <p>The fastest method for working together on staging and temporary environments</p>
         </div>
 
         <div class="btn-container">
-            <button class="preview btn-primary">Primary button</button>
-            <button class="preview btn-secondary">Secondary button</button>
+            <div class="preview btn-primary">Primary button</div>
+            <div class="preview btn-secondary">Secondary button</div>
         </div>
     </div>
-</div>
-`;
+</div >
+    `;
