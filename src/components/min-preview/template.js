@@ -1,5 +1,5 @@
-import pencil from "../svgs/pencil.svg"
-import trash from "../svgs/trash.svg"
+import pencil from "../../svgs/pencil.svg"
+import trash from "../../svgs/trash.svg"
 
 
 export const template = document.createElement("template");

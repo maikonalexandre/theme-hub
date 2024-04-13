@@ -1,4 +1,5 @@
 import { template } from "./template";
+import { resetColorsToDefault } from "../../utils/index.js"
 
 class MinPreview extends HTMLElement {
     constructor() {
@@ -40,17 +41,17 @@ class MinPreview extends HTMLElement {
         const deleteButton = this.shadowRoot.querySelector(".btn-danger")
 
         const editButton = this.shadowRoot.querySelector(".btn-warning")
-
         editButton.setAttribute("href", `/about/${this.getAttribute("id")}`)
 
         checkboxInput.addEventListener(("change"), (event) => {
             if (!event.target.checked) {
+                resetColorsToDefault()
                 deleteButton.removeAttribute("disabled")
                 return
             }
 
             deleteButton.setAttribute("disabled", "true")
-            this.setCollorTheme()
+            this.setApplicationTheme()
         })
 
         deleteButton.addEventListener(("click"), (event) => {
@@ -58,7 +59,7 @@ class MinPreview extends HTMLElement {
         })
     }
 
-    setCollorTheme() {
+    setApplicationTheme() {
         document.documentElement.style.setProperty('--primary', this.getAttribute("primary"));
         document.documentElement.style.setProperty('--secondary', this.getAttribute("secondary"));
         document.documentElement.style.setProperty('--danger', this.getAttribute("danger"));
