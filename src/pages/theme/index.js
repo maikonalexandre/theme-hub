@@ -12,20 +12,18 @@ export class Theme {
         this.pageId = params[0]
 
         if (this.pageId) {
-            this.theme = themesStorage.getThemeById(this.pageId)
-            if (!this.theme) {
-                console.log("redirect to another page");
-            }
+            this.defaultTheme = themesStorage.getThemeById(this.pageId)
         }
 
         if (!this.pageId) {
-            this.theme = getDefaultTheme()
+            this.defaultTheme = getDefaultTheme()
         }
     }
 
     build() {
         const page = this.createPage()
-        this.setPreviewTheme(page)
+        this.setThemeLargePreviewComponent(page)
+        this.addFeaturesToPage(page)
         return page
     }
 
@@ -65,45 +63,27 @@ export class Theme {
                 </div>`
         }).join("")}
             </form>
-
             <large-preview />
         </div>
         `
-
-        const allInputsColor = element.querySelectorAll("input[type=color]")
-        allInputsColor.forEach((element) => {
-            element.addEventListener(("change"), (event) => {
-                const color = event.target.value;
-                const target = event.target.id.split("-")[2]
-
-                this.showOnPreview(color, target)
-            })
-        })
-
-        const form = element.querySelector("#add-theme-colors")
-        form.addEventListener('submit', (event) => {
-            event.preventDefault()
-            this.createNewTheme()
-        })
-
         return element
     }
 
-    setPreviewTheme(element) {
+    setThemeLargePreviewComponent(page) {
         if (this.pageId) {
-            element.querySelector(".theme-name").value = this.theme.name
+            page.querySelector(".theme-name").value = this.defaultTheme.name
         }
 
-        if (this.theme) {
-            element.querySelector("#input-color-primary").value = this.theme.colors.primary;
-            element.querySelector("#input-color-secondary").value = this.theme.colors.secondary;
-            element.querySelector("#input-color-success").value = this.theme.colors.success;
-            element.querySelector("#input-color-warning").value = this.theme.colors.warning;
-            element.querySelector("#input-color-danger").value = this.theme.colors.danger;
+        if (this.defaultTheme) {
+            page.querySelector("#input-color-primary").value = this.defaultTheme.colors.primary;
+            page.querySelector("#input-color-secondary").value = this.defaultTheme.colors.secondary;
+            page.querySelector("#input-color-success").value = this.defaultTheme.colors.success;
+            page.querySelector("#input-color-warning").value = this.defaultTheme.colors.warning;
+            page.querySelector("#input-color-danger").value = this.defaultTheme.colors.danger;
 
-            const largePreview = element.querySelector("large-preview")
+            const largePreview = page.querySelector("large-preview")
 
-            Object.entries(this.theme.colors).forEach(([key, value]) => {
+            Object.entries(this.defaultTheme.colors).forEach(([key, value]) => {
                 largePreview.setAttribute(key, value)
             })
         }
@@ -118,26 +98,38 @@ export class Theme {
             return
         }
 
-        const primaryColor = document.querySelector("#input-color-primary").value;
-        const secondaryColor = document.querySelector("#input-color-secondary").value;
-        const successColor = document.querySelector("#input-color-success").value;
-        const warningColor = document.querySelector("#input-color-warning").value;
-        const dangerColor = document.querySelector("#input-color-danger").value;
-
         const colors = {
-            primary: primaryColor,
-            secondary: secondaryColor,
-            success: successColor,
-            warning: warningColor,
-            danger: dangerColor
+            primary: document.querySelector("#input-color-primary").value,
+            secondary: document.querySelector("#input-color-secondary").value,
+            success: document.querySelector("#input-color-success").value,
+            warning: document.querySelector("#input-color-warning").value,
+            danger: document.querySelector("#input-color-danger").value
         }
 
         themesStorage.saveThemeOnStorage({ name: name.value, colors }, this.pageId)
         router.push("/")
     }
 
-    showOnPreview(color, target) {
+    showOnPreviewComponent(color, target) {
         const elementPreview = document.querySelector("large-preview")
         elementPreview.setAttribute(target, `${color}`)
+    }
+
+    addFeaturesToPage(page) {
+        const allInputTypeColor = page.querySelectorAll("input[type=color]")
+        allInputTypeColor.forEach((element) => {
+            element.addEventListener(("change"), (e) => {
+                const color = e.target.value;
+                const target = e.target.id.split("-")[2]
+
+                this.showOnPreviewComponent(color, target)
+            })
+        })
+
+        const createNewThemeForm = page.querySelector("#add-theme-colors")
+        createNewThemeForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            this.createNewTheme()
+        })
     }
 }

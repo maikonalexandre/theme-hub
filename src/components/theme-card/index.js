@@ -1,5 +1,5 @@
 import { template } from "./template";
-import { resetColorsToDefault, saveDefaultTheme, verifyIsChecked, setApplicationTheme } from "../../utils/index.js"
+import { resetColorsToDefault, saveDefaultTheme, setApplicationTheme, disableAnotherCheckBoxes } from "../../utils/index.js"
 
 import { themesStorage } from "../../utils/store.js"
 
@@ -29,14 +29,14 @@ class ThemeCard extends HTMLElement {
         const secondaryTitle = this.shadowRoot.querySelector(".title-secondary")
         secondaryTitle.style.color = this.getAttribute("secondary")
 
-        const buttonSuccess = this.shadowRoot.querySelector("div.btn-success")
-        buttonSuccess.style.backgroundColor = this.getAttribute("success")
+        const fakeButtonSuccess = this.shadowRoot.querySelector("div.btn-success")
+        fakeButtonSuccess.style.backgroundColor = this.getAttribute("success")
 
-        const buttonWarning = this.shadowRoot.querySelector("div.btn-warning")
-        buttonWarning.style.backgroundColor = this.getAttribute("warning")
+        const fakeButtonWarning = this.shadowRoot.querySelector("div.btn-warning")
+        fakeButtonWarning.style.backgroundColor = this.getAttribute("warning")
 
-        const buttonDanger = this.shadowRoot.querySelector("div.btn-danger")
-        buttonDanger.style.backgroundColor = this.getAttribute("danger")
+        const fakeButtonDanger = this.shadowRoot.querySelector("div.btn-danger")
+        fakeButtonDanger.style.backgroundColor = this.getAttribute("danger")
     }
 
     static get observedAttributes() {
@@ -47,7 +47,9 @@ class ThemeCard extends HTMLElement {
         const checkboxInput = this.shadowRoot.querySelector("#input-checkmark")
         const isChecked = this.getAttribute("checked") === "true" ? true : false
         checkboxInput.checked = isChecked
+
         const deleteButton = this.shadowRoot.querySelector(".btn-danger")
+
 
         if (isChecked) {
             deleteButton.setAttribute("disabled", "true")
@@ -76,8 +78,8 @@ class ThemeCard extends HTMLElement {
         const cardTitle = this.shadowRoot.querySelector(".card-title")
         cardTitle.textContent = this.getAttribute("title")
 
-        checkboxInput.addEventListener(("change"), (event) => {
-            const isChecked = event.target.checked
+        checkboxInput.addEventListener(("change"), (e) => {
+            const isChecked = e.target.checked
 
             const colors = {
                 primary: this.getAttribute("primary"),
@@ -97,10 +99,9 @@ class ThemeCard extends HTMLElement {
                 setApplicationTheme()
             }
 
-            verifyIsChecked()
+            disableAnotherCheckBoxes()
         })
     }
-
 }
 
 customElements.define("theme-card", ThemeCard);

@@ -29,7 +29,7 @@ export function getDefaultTheme() {
     return JSON.parse(dados);
 }
 
-export function verifyIsChecked() {
+export function disableAnotherCheckBoxes() {
     const cards = document.querySelectorAll("theme-card")
     cards.forEach((element) => {
         element.setAttribute("checked", element.getAttribute("id") === getDefaultTheme().id)

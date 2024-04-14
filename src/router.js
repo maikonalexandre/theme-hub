@@ -1,8 +1,6 @@
 import { Home } from "./pages/home/index.js";
 import { Theme } from "./pages/theme/index.js"
 
-import { setApplicationTheme, getDefaultTheme } from "./utils/index.js"
-
 const routes = [
     { path: '/', component: Home },
     { path: "/theme", component: Theme },
@@ -31,8 +29,6 @@ const renderComponent = () => {
         const component = new route.component(params);
         rootDiv.appendChild(component.build());
     }
-
-    setApplicationTheme()
 };
 
 

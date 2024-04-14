@@ -10,6 +10,7 @@ export class Home {
 
     build() {
         const page = this.createPage()
+        this.addFeaturesToPage(page)
         return page
     }
 
@@ -46,23 +47,24 @@ export class Home {
         }).join("")}
             </div>
         `
+        return element
+    }
 
-        const cards = element.querySelectorAll("theme-card")
+    addFeaturesToPage(page) {
+        const cards = page.querySelectorAll("theme-card")
 
-        const searchBar = element.querySelector(".search-bar")
-        searchBar.addEventListener(("input"), (event) => {
+        const searchBar = page.querySelector(".search-bar")
+        searchBar.addEventListener(("input"), (e) => {
             cards.forEach((card) => {
                 const title = card.getAttribute("title").toLowerCase()
 
-                if (!title.includes(event.target.value.toLowerCase().trim())) {
+                if (!title.includes(e.target.value.toLowerCase().trim())) {
                     card.style.display = "none"
                 } else {
                     card.style.display = "block"
                 }
             })
         })
-
-        return element
     }
 }
 
