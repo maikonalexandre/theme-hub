@@ -1,5 +1,4 @@
 import { template } from "./template";
-import { resetColorsToDefault } from "../../utils/index.js"
 
 class LargePreview extends HTMLElement {
     constructor() {
