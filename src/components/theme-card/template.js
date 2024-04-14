@@ -23,7 +23,7 @@ template.innerHTML = /*html*/`
 
     <div class="preview-container">
         <div>
-            <h1 class="title">Building one pagers together,</h1>
+            <h1 class="title title-primary">Building one pagers together,</h1>
             <h1 class="title title-secondary">wherever and anywhere</h1>
         </div>
 
@@ -32,8 +32,9 @@ template.innerHTML = /*html*/`
         </div>
 
         <div class="btn-container">
-            <div class="preview btn-primary">Primary button</div>
-            <div class="preview btn-secondary">Secondary button</div>
+            <div class="preview btn-success">Check</div>
+            <div class="preview btn-warning">Later</div>
+            <div class="preview btn-danger">Deny</div>
         </div>
     </div>
 </div >
