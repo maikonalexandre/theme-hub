@@ -1,49 +1,14 @@
-import { Home } from "./pages/home/index.js";
-import { Theme } from "./pages/theme/index.js"
+import { router } from "./router.js"
 
-const router = () => {
-    const routes = [
-        { path: '/', component: Home },
-        { path: "/theme", component: Theme },
-        { path: '/theme/:id', component: Theme }
-    ];
+window.addEventListener("click", (e) => {
+    if (e.target.matches("[data-link]")) {
+        e.preventDefault();
+        router.push(e.target.href)
+    }
+});
 
-    const rootDiv = document.getElementById('app');
+window.addEventListener("popstate", router.render());
+window.addEventListener("DOMContentLoaded", router.render());
 
-    const renderComponent = () => {
-        const currentPath = window.location.pathname;
 
-        const route = routes.find(route => {
-            const routePathSegments = route.path.split('/').slice(1);
-            const currentPathSegments = currentPath.split('/').slice(1);
-
-            if (routePathSegments.length !== currentPathSegments.length) {
-                return false;
-            }
-
-            return routePathSegments.every((segment, i) => segment === currentPathSegments[i] || segment.startsWith(':'));
-        });
-
-        if (route) {
-            rootDiv.innerHTML = '';
-            const params = currentPath.split('/').slice(2);
-            const component = new route.component(params);
-            rootDiv.appendChild(component.build());
-        }
-    };
-
-    window.addEventListener("click", (e) => {
-        if (e.target.matches("[data-link]")) {
-            e.preventDefault();
-            history.pushState("", "", e.target.href);
-            renderComponent();
-        }
-    });
-
-    window.addEventListener("popstate", renderComponent);
-    window.addEventListener("DOMContentLoaded", renderComponent);
-
-};
-
-router()
 
