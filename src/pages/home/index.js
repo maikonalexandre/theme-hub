@@ -1,9 +1,19 @@
 import "./style.css"
 import "../../components/theme-card"
 
-export class Home {
+import { themesStorage } from "../../utils/store.js"
+import { getDefaultTheme } from "../../utils/index.js"
 
-    render() {
+export class Home {
+    themes = themesStorage.getThemes()
+    defaultTheme = getDefaultTheme()
+
+    build() {
+        const page = this.createPage()
+        return page
+    }
+
+    createPage() {
         const element = document.createElement('div');
         element.classList.add("home-container")
 
@@ -14,15 +24,43 @@ export class Home {
 
             <div class="search-container">
                 <input class="search-bar" placeholder="Search...">
-                <a href="/theme" class="btn-add-theme">
+                <a href="/theme" data-link class="btn-add-theme">
                     Add new theme
                 </a>
             </div>
 
             <div class="main-grid">
-                <theme-card primary="#32A6DC" title="Theme pink" secondary="#A370FB" danger="#a25544" success="#bbeeee" warning="#12f2ff" id="1"></theme-card>
+               ${this.themes.map((theme) => {
+            return /*html*/`
+                <theme-card 
+                checked=${this.defaultTheme ? this.defaultTheme.id == theme.id : false} 
+                primary=${theme.colors.primary} 
+                title="${theme.name}" 
+                secondary=${theme.colors.secondary} 
+                danger=${theme.colors.danger}
+                success=${theme.colors.success} 
+                warning=${theme.colors.warning} 
+                id=${theme.id}>
+                </theme-card>
+                `
+        }).join("")}
             </div>
         `
+
+        const cards = element.querySelectorAll("theme-card")
+
+        const searchBar = element.querySelector(".search-bar")
+        searchBar.addEventListener(("input"), (event) => {
+            cards.forEach((card) => {
+                const title = card.getAttribute("title").toLowerCase()
+
+                if (!title.includes(event.target.value.toLowerCase().trim())) {
+                    card.style.display = "none"
+                } else {
+                    card.style.display = "block"
+                }
+            })
+        })
 
         return element
     }
@@ -31,19 +69,8 @@ export class Home {
 
 
 
-// const cards = document.querySelectorAll("theme-card")
 
-// const searchBar = document.querySelector(".search-bar")
-// searchBar.addEventListener(("input"), (event) => {
-//     cards.forEach((card) => {
-//         const title = card.getAttribute("title").toLowerCase()
 
-//         if (!title.includes(event.target.value.toLowerCase())) {
-//             card.style.display = "none"
-//         } else {
-//             card.style.display = "block"
-//         }
-//     })
-// })
+
 
 
