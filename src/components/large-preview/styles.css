@@ -1,0 +1,73 @@
+@import "../../global.css";
+
+.preview-container{
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+
+    align-items: center;
+
+    border-left: 1.5px solid var(--primary);
+}
+h1.title-primary{
+    color: var(--primary);
+}
+
+h1.title-secondary{
+    color: var(--secondary);
+}
+
+p{
+    font-size: medium;
+}
+
+.btn-container{
+    display: flex;
+
+    gap: 1rem;
+}
+
+div.preview{
+    font-size: 12px;
+    padding:  6px 12px;
+
+    border-radius: 8px;
+    font-weight: 600;
+
+    pointer-events: none;
+}
+
+div.btn-success{
+    background-color: var(--success);
+    color: white;
+}
+
+div.btn-warning{
+    background-color: var(--warning);
+    color: white;
+}
+
+div.btn-danger{
+    background-color: var(--danger);
+    color: white;
+}
+
+
+@media (min-width: 1px) and (max-width: 700px) {
+    .preview-container{
+        border: none;
+        padding: 0rem;
+    }
+  }
+
+  @media (min-width: 701px) and (max-width: 1100px) {
+    .preview-container{
+        border: none;
+        padding: 0px;
+    }
+  }
+
+

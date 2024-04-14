@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
 
-    gap: 4px;
+    gap: 5px;
 
     align-items: center;
 
@@ -60,13 +60,18 @@ div.preview{
     pointer-events: none;
 }
 
-div.btn-primary{
-    background-color: var(--primary);
+div.btn-success{
+    background-color: var(--success);
     color: white;
 }
 
-div.btn-secondary{
-    background-color: var(--secondary);
+div.btn-warning{
+    background-color: var(--warning);
+    color: white;
+}
+
+div.btn-danger{
+    background-color: var(--danger);
     color: white;
 }
 
@@ -74,7 +79,7 @@ div.btn-secondary{
     display: flex;
     justify-content: space-between;
 
-    min-width: 320px;
+    min-width: 270px;
     border: solid 1px var(--primary);
     padding: 0.75rem;
 
@@ -120,7 +125,6 @@ div.btn-secondary{
     /* color: var(--primary); */
 }
 
-/* Hide the default checkbox */
 .input-container input {
     display: none;
   }
@@ -134,7 +138,6 @@ div.btn-secondary{
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Create a custom checkbox */
   .input-checkmark {
     position: relative;
     top: 0;
@@ -146,12 +149,10 @@ div.btn-secondary{
     /* transition: all 0.25s; */
   }
   
-  /* When the checkbox is checked, add a background */
   .input-container input:checked ~ .input-checkmark {
     background-color: var(--success);
   }
   
-  /* Create the checkmark/indicator (hidden when not checked) */
   .input-checkmark:after {
     content: "";
     position: absolute;
@@ -165,7 +166,6 @@ div.btn-secondary{
     /* transition: all 0.25s, border-width 0.1s; */
   }
   
-  /* Show the checkmark when checked */
   .input-container input:checked ~ .input-checkmark:after {
     left: 0.45em;
     top: 0.25em;

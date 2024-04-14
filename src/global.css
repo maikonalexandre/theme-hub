@@ -42,6 +42,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+
+    
 }
 
 #app {
@@ -66,3 +68,17 @@ body {
   }
 }
 
+@media (min-width: 1px) and (max-width: 600px) {
+  #app{
+    padding: 0.5rem;
+  }
+}
+
+@keyframes fadeInAnimation {
+  from {
+      opacity: 0; /* Opacidade inicial */
+  }
+  to {
+      opacity: 1; /* Opacidade final */
+  }
+}
