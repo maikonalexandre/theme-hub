@@ -28,12 +28,22 @@ const router = () => {
             rootDiv.innerHTML = '';
             const params = currentPath.split('/').slice(2);
             const component = new route.component(params);
-            rootDiv.appendChild(component.render());
+            rootDiv.appendChild(component.build());
         }
     };
 
-    window.addEventListener('popstate', renderComponent);
-    renderComponent();
+    window.addEventListener("click", (e) => {
+        if (e.target.matches("[data-link]")) {
+            e.preventDefault();
+            history.pushState("", "", e.target.href);
+            renderComponent();
+        }
+    });
+
+    window.addEventListener("popstate", renderComponent);
+    window.addEventListener("DOMContentLoaded", renderComponent);
+
 };
 
-router();
+router()
+
