@@ -1,5 +1,4 @@
-![image](https://github.com/maikonalexandre/ThemeHub/assets/86725282/33c61f9d-2dbb-47db-aa57-713e58661470)
-
+![Captura de tela de 2024-04-14 14-26-14](https://github.com/maikonalexandre/theme-hub/assets/86725282/d0bf5c19-ca83-41ad-bcb3-bfe1ed34c157)
 
 <div align="center">
 <p></p>
