@@ -58,4 +58,3 @@ yarn dev
 ## 🛠️ Stack
 - [**Vite**](https://vitejs.dev/) - A build tool that aims to provide a faster and leaner development experience for modern web projects.
 
-**And more**
