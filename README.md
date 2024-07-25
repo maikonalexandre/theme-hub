@@ -18,7 +18,7 @@
 
 ## 👋 Introduction
 
-[**theme-hub**]() is a simple theme gallery made with javascript vanila 
+[**theme-hub**]() is a simple theme gallery made with javascript vanila.
 
 ## 📌 Install
 
